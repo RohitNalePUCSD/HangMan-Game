@@ -30,46 +30,44 @@ func main() {
 
 	for {
 
-		Tokenstrs := strings.Join(token, "")
+		str_token := strings.Join(token, "")
 
 		// evaluate a loss! If user guesses a wrong letter or the wrong word, they lose a chance.
-		if chances == 0 && words != Tokenstrs {
+		if chances == 0 && words != str_token {
 			fmt.Println("You are loss the game ! try agin")
 			break
 		}
 
 		//win the game
-		if words == Tokenstrs {
-			fmt.Println("Given string is = ", Tokenstrs)
+		if words == str_token {
+			fmt.Println("Given string is = ", str_token)
 			fmt.Println("Win the game !")
 			break
 		}
 
 		
-		fmt.Println("\n", token)
+		fmt.Println("\n",token)
 		fmt.Println("Chances left :", chances)
 		fmt.Println("Guesses : ", guess)
 		fmt.Println("Guess the letter or word :")
 		
 		//Input from the strings
-		Inputstrings := ""
-		fmt.Scanf("%s", &Inputstrings)
+		input_str := ""
+		fmt.Scanf("%s", &input_str)
 
 		//Inputstring compare with words
-		if len(Inputstrings) == length && Inputstrings == words {
+		if len(input_str) == length && input_str == words {
 			fmt.Println("Win the game...!")
 			return
 		}
 		
 
-		_, ok := placeholder[string(Inputstrings)]
+		_, ok := placeholder[string(input_str)]
 		
 		//check key is present and that key value is false
-		if ok && placeholder[Inputstrings] == false { 
+		if ok { 
 			//replace the value of that key is ture
-			placeholder[Inputstrings] = true
-			
-						
+			placeholder[input_str] = true	
 			for i:= 0; i < length; i++ {
 				// compare the words of each character in placeholder 
 				if placeholder[string(words[i])] == true && string(token[i]) == "_" {
@@ -82,7 +80,7 @@ func main() {
 			//Inputstring is not match 
 			fmt.Println("Miss chances.....!\n")
 			//Inputstring append in guess array
-			guess = append(guess, Inputstrings)
+			guess = append(guess, input_str)
 			chances--
 		}
 	}
